@@ -1,0 +1,61 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.0.16.0.3)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Dream06", "Spin"]
+    def "Dream06" (
+        active = true
+        references = @Dream06.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def RealityKitTimeline "Spin"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 30
+                uniform token info:id = "223C1F88-705B-4663-AFE5-6A7E62D14C48"
+                token orbitDirection = "counterClockwise"
+                rel pivotEntity = </Root/Dream06/Meshes/Sketchfab_model/Clouds_5_fbx/RootNode/Sky>
+                double startTime = 0
+                rel target = </Root/Dream06/Meshes/Sketchfab_model/Clouds_5_fbx/RootNode/Boot_Finaal_1>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 30
+                uniform token info:id = "8F63C0E4-529F-4E25-961E-EAB251A22823"
+                token spinDirection = "counterclockwise"
+                double startTime = -0.0055125198202959835
+                rel target = </Root/Dream06/Meshes/Sketchfab_model/Clouds_5_fbx/RootNode/Boot_Finaal_1>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+    }
+}
+

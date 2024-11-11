@@ -14,11 +14,14 @@ struct ImmersiveView: View {
 
     var body: some View {
         RealityView { content in
-            if let immersiveContentEntity = try? await Entity(named: appModel.dream.rawValue, in: realityKitContentBundle) {
+            if let immersiveContentEntity = try? await Entity(named: appModel.dream!.rawValue, in: realityKitContentBundle) {
                 content.add(immersiveContentEntity)
             }
         }
         .id(appModel.dream)
+        .onDisappear {
+            appModel.dream = nil
+        }
     }
 }
 

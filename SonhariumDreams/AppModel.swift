@@ -18,12 +18,30 @@ class AppModel {
         case open
     }
     var immersiveSpaceState = ImmersiveSpaceState.closed
-    
-    enum Dream: String {
-        case dream01 = "Dream01Final"
-        case dream02 = "Dream02Final"
-        case dream03 = "Dream03Final"
-        case dream04 = "Dream04Final"
+    enum Description: String {
+        case dream01Desc = "Pesadelo: Sonhos que causam medo ou ansiedade. Eles podem ser muito vívidos e parecem reais."
+        case dream02Desc = "Habitual: Sonhos comuns que ocorrem regularmente e são frequentemente esquecidos ao acordar."
+        case dream03 = "Lucido: Sonhos em que a pessoa está consciente de que está sonhando e pode controlar o sonho."
+        case dream04 = "Vivido: Sonhos muito claros e detalhados que podem ser lembrados com facilidade."
     }
-    var dream: Dream = .dream01
+    enum Dream: String {
+        case dream01 = "Dream7Final"
+        case dream02 = "Dream05Final"
+        case dream03 = "Dream06Final"
+        case dream04 = "Dream04Final"
+        
+        var description: String {
+            switch self {
+            case .dream01:
+                return "Pesadelo: Sonhos que causam medo ou ansiedade. Eles podem ser muito vívidos e parecem reais."
+            case .dream02:
+                return "Habitual: Sonhos comuns que ocorrem regularmente e são frequentemente esquecidos ao acordar."
+            case .dream03:
+                return "Lucido: Sonhos em que a pessoa está consciente de que está sonhando e pode controlar o sonho."
+            case .dream04:
+                return "Vivido: Sonhos muito claros e detalhados que podem ser lembrados com facilidade."
+            }
+        }
+    }
+    var dream: Dream?
 }
