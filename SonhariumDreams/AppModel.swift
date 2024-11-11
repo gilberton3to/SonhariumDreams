@@ -26,9 +26,9 @@ class AppModel {
     }
     enum Dream: String {
         case dream01 = "Dream7Final"
-        case dream02 = "Dream05Final"
+        case dream02 = "Dream04Final"
         case dream03 = "Dream06Final"
-        case dream04 = "Dream04Final"
+        case dream04 = "Dream05Final"
         
         var description: String {
             switch self {
@@ -40,6 +40,18 @@ class AppModel {
                 return "Lucido: Sonhos em que a pessoa está consciente de que está sonhando e pode controlar o sonho."
             case .dream04:
                 return "Vivido: Sonhos muito claros e detalhados que podem ser lembrados com facilidade."
+            }
+        }
+        var title: String {
+            switch self {
+            case .dream01:
+                return "Pesadelo"
+            case .dream02:
+                return "Habitual"
+            case .dream03:
+                return "Lucido"
+            case .dream04:
+                return "Vivido"
             }
         }
     }

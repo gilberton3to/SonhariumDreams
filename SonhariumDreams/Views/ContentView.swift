@@ -55,7 +55,7 @@ struct DreamView: View {
     
     var body: some View {
         VStack {
-            Text(dream.rawValue)
+            Text(dream.title)
                 .font(.largeTitle)
                 .padding()
             
@@ -84,6 +84,18 @@ enum DreamType: String, Identifiable {
             return "Lucido: Sonhos em que a pessoa está consciente de que está sonhando e pode controlar o sonho."
         case .dream04:
             return "Vivido: Sonhos muito claros e detalhados que podem ser lembrados com facilidade."
+        }
+    }
+    var title: String {
+        switch self {
+        case .dream01:
+            return "Pesadelo"
+        case .dream02:
+            return "Habitual"
+        case .dream03:
+            return "Lucido"
+        case .dream04:
+            return "Vivido"
         }
     }
 }
