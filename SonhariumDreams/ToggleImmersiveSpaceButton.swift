@@ -56,6 +56,7 @@ struct ToggleImmersiveSpaceButton: View {
             }
         } label: {
             Text(appModel.immersiveSpaceState == .open ? "Hide Immersive Space" : title)
+                .font(.system(size: 20, weight: .semibold))
         }
         .disabled(appModel.immersiveSpaceState == .inTransition)
         .animation(.none, value: 0)

@@ -14,29 +14,29 @@ struct ContentView: View {
     
     var body: some View {
         NavigationSplitView {
-            VStack {
-                Text("Sonharium").font(.system(size: 40, weight: .bold))
-                    .foregroundStyle(.purple)
-                
+            List {
+                Spacer()
+                Text("Sonharium").font(.system(size: 34, weight: .bold))
+                    .foregroundStyle(.white)
                 if (appModel.dream == nil || appModel.dream == .dream01) {
-                    NavigationLink(destination: DreamView(dream: .dream01)) {
-                        ToggleImmersiveSpaceButton(dream: .dream01, title: "Pesadelo")
-                    }
+                    //NavigationLink(destination: DreamView(dream: .dream01)) {
+                    ToggleImmersiveSpaceButton(dream: .dream01, title: "Pesadelo")
+                    // }
                 }
                 if (appModel.dream == nil || appModel.dream == .dream02) {
-                    NavigationLink(destination: DreamView(dream: .dream02)) {
-                        ToggleImmersiveSpaceButton(dream: .dream02, title: "Habitual")
-                    }
+                    //NavigationLink(destination: DreamView(dream: .dream02)) {
+                    ToggleImmersiveSpaceButton(dream: .dream02, title: "Habitual")
+                    //}
                 }
                 if (appModel.dream == nil || appModel.dream == .dream03) {
-                    NavigationLink(destination: DreamView(dream: .dream03)) {
-                        ToggleImmersiveSpaceButton(dream: .dream03, title: "Lucido")
-                    }
+                    //NavigationLink(destination: DreamView(dream: .dream03)) {
+                    ToggleImmersiveSpaceButton(dream: .dream03, title: "Lucido")
+                    //  }
                 }
                 if (appModel.dream == nil || appModel.dream == .dream04) {
-                    NavigationLink(destination: DreamView(dream: .dream04)) {
-                        ToggleImmersiveSpaceButton(dream: .dream04, title: "Vivido")
-                    }
+                    // NavigationLink(destination: DreamView(dream: .dream04)) {
+                    ToggleImmersiveSpaceButton(dream: .dream04, title: "Vivido")
+                    // }
                 }
             }
             .padding()
@@ -44,7 +44,7 @@ struct ContentView: View {
             if appModel.dream != nil {
                 DreamView(dream: appModel.dream!)
             } else {
-                Text("Placeholder!")                
+                Text("Placeholder!")
             }
         }
     }
@@ -57,7 +57,6 @@ struct DreamView: View {
         VStack {
             Text(dream.rawValue)
                 .font(.largeTitle)
-                .foregroundColor(.purple)
                 .padding()
             
             Text(dream.description)
