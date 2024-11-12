@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Dream06", "Spin"]
+    reorder nameChildren = ["Dream06", "Spin", "Things_I_Could_Have_Said___Adam_MacDougall_mp3", "AmbientAudio", "Timeline"]
     def "Dream06" (
         active = true
         references = @Dream06.usdz@
@@ -19,6 +19,36 @@ def Xform "Root"
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/Dream06/OnAddedToScene>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/Dream06/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Dream06/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Dream06>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/Timeline>
+                rel animationLibraryKeyOverrideKey = </Root/Dream06/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
     }
 
     def RealityKitTimeline "Spin"
@@ -56,6 +86,75 @@ def Xform "Root"
                 }
             }
         }
+    }
+
+    def Xform "AmbientAudio"
+    {
+        def RealityKitComponent "AmbientAudio"
+        {
+            float gain = 0
+            uniform token info:id = "RealityKit.AmbientAudio"
+        }
+
+        def RealityKitComponent "AudioLibrary"
+        {
+            uniform token info:id = "RealityKit.AudioLibrary"
+
+            def RealityKitDict "resources"
+            {
+                string[] keys = ["Things I Could Have Said - Adam MacDougall.mp3"]
+                rel values = </Root/Things_I_Could_Have_Said___Adam_MacDougall_mp32>
+            }
+        }
+    }
+
+    def RealityKitAudioFile "Things_I_Could_Have_Said___Adam_MacDougall_mp3"
+    {
+        uniform asset file = @Things I Could Have Said - Adam MacDougall.mp3@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Things_I_Could_Have_Said___Adam_MacDougall_mp32"
+    {
+        uniform asset file = @Things I Could Have Said - Adam MacDougall.mp3@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitTimeline "Timeline"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Audio"
+            {
+                string actionKind = "audio"
+                string audioResourceName = "Things I Could Have Said - Adam MacDougall.mp3"
+                bool controlPlayback = 1
+                double duration = 244.52829166666666
+                uniform token info:id = "E6149882-9D5E-431D-B580-3C8E43BE7453"
+                double startTime = 0
+                rel target = </Root/AmbientAudio>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitAudioFile "Things_I_Could_Have_Said___Adam_MacDougall_mp33"
+    {
+        uniform asset file = @Things I Could Have Said - Adam MacDougall.mp3@
+        uniform bool shouldLoop = 0
+    }
+
+    def "Dream04Final" (
+        active = true
+        prepend references = @Dream04Final.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-15.1899185, 0, -230.20358)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
 

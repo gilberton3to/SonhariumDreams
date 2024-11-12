@@ -10,6 +10,7 @@
 
 def Xform "Root"
 {
+    reorder nameChildren = ["Dream05", "Timeline", "Between_The_Spaces___The_Soundlings_mp3", "AmbientAudio"]
     def "Dream05" (
         active = true
         customData = {
@@ -22,6 +23,89 @@ def Xform "Root"
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/Dream05/OnAddedToScene>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/Dream05/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Dream05/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Dream05>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/Timeline>
+                rel animationLibraryKeyOverrideKey = </Root/Dream05/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def RealityKitTimeline "Timeline"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Audio"
+            {
+                string actionKind = "audio"
+                string audioResourceName = "Between The Spaces - The Soundlings.mp3"
+                bool controlPlayback = 1
+                double duration = 190.18866666666668
+                uniform token info:id = "25915990-83C1-48CC-B0A2-B1FF04896438"
+                double loopCount = 0
+                double startTime = 0
+                rel target = </Root/AmbientAudio>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+    }
+
+    def Xform "AmbientAudio"
+    {
+        def RealityKitComponent "AmbientAudio"
+        {
+            uniform token info:id = "RealityKit.AmbientAudio"
+        }
+
+        def RealityKitComponent "AudioLibrary"
+        {
+            uniform token info:id = "RealityKit.AudioLibrary"
+
+            def RealityKitDict "resources"
+            {
+                string[] keys = ["Between The Spaces - The Soundlings.mp3"]
+                rel values = </Root/Between_The_Spaces___The_Soundlings_mp32>
+            }
+        }
+    }
+
+    def RealityKitAudioFile "Between_The_Spaces___The_Soundlings_mp3"
+    {
+        uniform asset file = @Between The Spaces - The Soundlings.mp3@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Between_The_Spaces___The_Soundlings_mp32"
+    {
+        uniform asset file = @Between The Spaces - The Soundlings.mp3@
+        uniform bool shouldLoop = 0
     }
 }
 
